@@ -8,7 +8,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 RUN ln -s /usr/share/i18n/SUPPORTED /var/lib/locales/supported.d/all
 RUN locale-gen
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get install --quiet --no-install-recommends --assume-yes \
     postgresql-client-9.3 \
     git-core \
     pandoc \
