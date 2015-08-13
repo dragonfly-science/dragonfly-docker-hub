@@ -25,5 +25,5 @@ RUN apt-get update && \
     curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY r_requirements.r /etc/kahawai-jobserver/r_requirements.r
-RUN R --slave < /etc/kahawai-jobserver/r_requirements.r
+COPY r_requirements.r /etc/r_requirements.r
+RUN R --slave < /etc/r_requirements.r
