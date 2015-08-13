@@ -1,0 +1,25 @@
+FROM ubuntu:14.04
+MAINTAINER finlay@dragonfly.co.nz
+
+RUN echo "deb http://cran.r-project.org/bin/linux/ubuntu trusty/" > \
+    /etc/apt/sources.list.d/cran.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    postgresql-client-9.3 \
+    git-core \
+    pandoc \
+    python-pygments \
+    jags \
+    awscli \
+    texlive-full \
+    biber && \
+    r-base-dev \
+    libpq-dev \
+    r-recommended \
+    r-base \
+    curl \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY r_requirements.r /etc/kahawai-jobserver/r_requirements.r
+RUN R --slave < /etc/kahawai-jobserver/r_requirements.r
