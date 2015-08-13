@@ -5,7 +5,7 @@ RUN echo "deb http://cran.r-project.org/bin/linux/ubuntu trusty/" > \
     /etc/apt/sources.list.d/cran.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt-get update && apt-get install --quiet --no-install-recommends --assume-yes \
     postgresql-client-9.3 \
     git-core \
     pandoc \
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     jags \
     awscli \
     texlive-full \
-    biber && \
+    biber \
     r-base-dev \
     libpq-dev \
     r-recommended \
